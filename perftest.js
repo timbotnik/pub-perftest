@@ -1,9 +1,9 @@
 var options = {
   // Host to connect to
-  host: 'localhost',
+  host: 'george.percolatestudio.com',
 
   // Port to connect on
-  port: 3000,
+  port: 8080,
 
   // *optional* publication to subscribe to
   //publicationName: 'documents',
@@ -52,7 +52,15 @@ function launchTest(number, done) {
   });
 
   if (options.debug)
-    ddpclient.on('message', function (msg) { logDebug("DDP: " + msg); });
+    ddpclient.on('message', function (msg) { logDebug(number + ": DDP: " + msg); });
+
+  //ddpclient.on('error', function (error) { 
+  //  logError(number + ": Socket Error: " + error); 
+  //});
+  
+  //ddpclient.on('close', function (code, reason) { 
+  //  console.log(number + ": Socket error (reconnecting) code: " + code + " reason: " + reason); 
+  //});
 
   ddpclient.connect(function(error) {
     // If autoReconnect is true, this callback will be invoked each time
