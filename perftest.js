@@ -6,14 +6,14 @@ var options = {
   port: 8080,
 
   // *optional* publication to subscribe to
-  //publicationName: 'documents',
+  publicationName: 'documents',
   
   // *optional* name of a method to call once at the start of the tests
   // setupMethodName: 'startUpdate',
 
   // Stop creating new connections when you hit this max
   // Useful if you just want to hold open subs.
-  maxConnections: 30, 
+  maxConnections: 30000, 
 
   // Print DDP log and other debugging?
   debug: false,
