@@ -13,7 +13,7 @@ var options = {
 
   // Stop creating new connections when you hit this max
   // Useful if you just want to hold open subs.
-  maxConnections: 30000, 
+  maxConnections: 30, 
 
   // Print DDP log and other debugging?
   debug: false,
@@ -54,13 +54,14 @@ function launchTest(number, done) {
   if (options.debug)
     ddpclient.on('message', function (msg) { logDebug(number + ": DDP: " + msg); });
 
-  //ddpclient.on('error', function (error) { 
-  //  logError(number + ": Socket Error: " + error); 
-  //});
+  ddpclient.on('error', function (error) {
+   logError(number + ": Socket Error: " + error);
+  });
   
-  //ddpclient.on('close', function (code, reason) { 
-  //  console.log(number + ": Socket error (reconnecting) code: " + code + " reason: " + reason); 
-  //});
+  ddpclient.on('close', function (code, reason) {
+   console.log(number + ": Socket error (reconnecting) code: " + code 
+     + " reason: " + reason);
+  });
 
   ddpclient.connect(function(error) {
     // If autoReconnect is true, this callback will be invoked each time
